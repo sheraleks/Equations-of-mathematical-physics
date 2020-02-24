@@ -1,6 +1,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <cmath>
 class Grid
 {
 private:
@@ -16,6 +17,11 @@ private:
 	std::vector<int> n_y_interval;
 	// loading from file
 	void load(std::string filename);
+	double calculate_h0(int a, int b, double q, int n);
+	void split_intervals(int n_borders, std::vector<int> &borders, std::vector<double> &q_borders, 
+		std::vector<int> &n_interval, std::vector<double> &axis);
 public:
+	std::vector<double> x;
+	std::vector<double> y;
 	Grid(std::string filename);
 };
