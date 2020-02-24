@@ -4,17 +4,18 @@
 class Grid
 {
 private:
-	void load(std::string filename);
-public:
-	// границы подобластей по x
+	// subregion borders by x
 	int n_x_borders;
 	std::vector<int> x_borders;
 	std::vector<double> q_x_borders;
 	std::vector<int> n_x_interval;
-	// границы подобластей по y
+	// subregion borders by y
 	int n_y_borders;
 	std::vector<int> y_borders;
 	std::vector<double> q_y_borders;
 	std::vector<int> n_y_interval;
+	// loading from file
+	void load(std::string filename);
+public:
 	Grid(std::string filename);
 };
