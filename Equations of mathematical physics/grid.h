@@ -17,6 +17,9 @@ private:
 	std::vector<int> n_y_interval;
 	// loading from file
 	void load(std::string filename);
+	void load(std::ifstream &file, int &n_borders, 
+		std::vector<int> &borders, std::vector<double> &q_borders,
+		std::vector<int> &n_interval);
 	double calculate_h0(int a, int b, double q, int n);
 	void split_intervals(int n_borders, std::vector<int> &borders, std::vector<double> &q_borders, 
 		std::vector<int> &n_interval, std::vector<double> &axis);

@@ -1,49 +1,27 @@
 #include "grid.h"
 
-void Grid::load(std::string filename)
+void Grid::load(std::ifstream &file, int& n_borders,
+	std::vector<int> &borders, std::vector<double>& q_borders,
+	std::vector<int>& n_interval)
 {
-	std::ifstream fin(filename);
-
-	// by x
-	fin >> n_x_borders;
-	x_borders.resize(n_x_borders);
-	// subregion borders by x
-	for (int i = 0; i < n_x_borders; i++)
+	file >> n_borders;
+	borders.resize(n_borders);
+	// subregion borders
+	for (int i = 0; i < n_borders; i++)
 	{
-		fin >> x_borders[i];
+		file >> borders[i];
 	}
-	q_x_borders.resize(n_x_borders - 1);
-	for (int i = 0; i < q_x_borders.size(); i++)
+	q_borders.resize(n_borders - 1);
+	for (int i = 0; i < q_borders.size(); i++)
 	{
-		fin >> q_x_borders[i];
+		file >> q_borders[i];
 	}
 	// interval
-	n_x_interval.resize(n_x_borders - 1);
-	for (int i = 0; i < n_x_interval.size(); i++)
+	n_interval.resize(n_borders - 1);
+	for (int i = 0; i < n_interval.size(); i++)
 	{
-		fin >> n_x_interval[i];
+		file >> n_interval[i];
 	}
-
-	// y
-	fin >> n_y_borders;
-	y_borders.resize(n_y_borders);
-	// subregion borders by y
-	for (int i = 0; i < n_y_borders; i++)
-	{
-		fin >> y_borders[i];
-	}
-	q_y_borders.resize(n_y_borders - 1);
-	for (int i = 0; i < q_y_borders.size(); i++)
-	{
-		fin >> q_y_borders[i];
-	}
-	// interval
-	n_y_interval.resize(n_y_borders - 1);
-	for (int i = 0; i < n_y_interval.size(); i++)
-	{
-		fin >> n_y_interval[i];
-	}
-	fin.close();
 }
 
 double Grid::calculate_h0(int a, int b, double q, int n)
@@ -71,7 +49,10 @@ void Grid::split_intervals(int n_borders, std::vector<int>& borders, std::vector
 
 Grid::Grid(std::string filename)
 {
-	load(filename);
+	std::ifstream fin(filename);
+	load(fin, n_x_borders, x_borders, q_x_borders, n_x_interval);
+	load(fin, n_y_borders, y_borders, q_y_borders, n_y_interval);
+	fin.close();
 	split_intervals(n_x_borders, x_borders, q_x_borders, n_x_interval, x);
 	split_intervals(n_y_borders, y_borders, q_y_borders, n_y_interval, y);
 }
