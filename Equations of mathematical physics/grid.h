@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <cmath>
+
 class Grid
 {
 private:
