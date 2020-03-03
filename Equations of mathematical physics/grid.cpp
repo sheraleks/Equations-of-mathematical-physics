@@ -26,7 +26,7 @@ void Grid::load(std::ifstream &file, int& n_borders,
 
 double Grid::calculate_h0(int a, int b, double q, int n)
 {
-	return (b - a) * (1 - q) / (1 - pow(q, n));
+	return q != 1 ? (b - a) * (1 - q) / (1 - pow(q, n));// : (b - a) / n;
 }
 
 void Grid::split_intervals(int n_borders, std::vector<int>& borders, std::vector<double>& q_borders,

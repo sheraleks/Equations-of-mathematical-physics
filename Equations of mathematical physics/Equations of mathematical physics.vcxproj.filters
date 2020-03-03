@@ -32,6 +32,9 @@
     <Text Include="grid.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="grid1.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DiagonalFormat.h">
