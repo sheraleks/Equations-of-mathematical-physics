@@ -3,7 +3,7 @@
 
 void diMatrix()
 {
-	auto grid = new Grid("grid.txt");
+	auto grid = new Grid("grid1.txt");
 	int n = grid->x.size() * grid->y.size();
 	auto matrix = new DiagonalFormat(n, 5);
 	double lambda, gamma, hy, hx;
